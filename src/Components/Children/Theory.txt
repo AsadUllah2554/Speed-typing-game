@@ -1,0 +1,12 @@
+For understanding:
+<h1> Hello World</h1> this is not a self closing tag
+<NavBar/> This is a self closing tag which is our custom component.
+Suppose you want a component with a border and Inside it you want to render
+different things like h1 div or form depending on the use in App.
+
+You can do this. 
+Suppose we create a border box component
+in <BorderBox> component pass props and return {props.children} and boom you are done
+
+<BorderBox> <h1>Hello</h1></BorderBox>
+<BorderBox> <div>Hello</div></BorderBox>

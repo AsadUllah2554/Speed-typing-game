@@ -1,0 +1,14 @@
+body{
+    background-color: blueviolet;
+}
+
+.border{
+    border: 2px solid black;
+}
+
+.callout{
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 20px;
+    background-color: #C0FFFE;
+}
