@@ -41,6 +41,21 @@ textarea {
     padding: 10px;
 }
 
+select{
+    font-family: 'Press Start 2P', cursive;
+    background-color: #a5a2a2;
+    width: 15.52rem;
+    padding: 2.8px 0px;
+    text-align: center;
+    outline: none;
+}
+
+option{
+    font-family: 'Press Start 2P', cursive;
+    background: #a5a2a2;
+
+}
+
 textarea:disabled {
     background-color: #a5a2a2;
 }

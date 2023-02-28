@@ -6,9 +6,12 @@ import "./styles.css"
 function SpeedGame(){
     const inputFocus = useRef(null);
 
-    const Starting_Time = 10
+   
     const [typedText,setTypedText] = useState("")
-    const [remainingTime,setRemainingTime] = useState(Starting_Time)
+    const [time,setTime] = useState({
+        time:"",
+    })
+    const [remainingTime,setRemainingTime] = useState(0)
     const [isGameStarted,setIsGameStarted] = useState(false);
     const [wordCount,setWordCount] = useState(0)
    
@@ -18,18 +21,27 @@ function SpeedGame(){
         setTypedText(value)
     }
 
+    function handleTime(e){
+        const {value} = e.target
+        setTime(parseInt(value))
+    }
+
     function startGame(){
-        setIsGameStarted(true)
-        setRemainingTime(Starting_Time)
-        setTypedText("")
-        inputFocus.current.disabled = false
-        inputFocus.current.focus()
+       
+            setWordCount(0)
+            setIsGameStarted(true)
+            setRemainingTime(time)
+            setTypedText("")
+            inputFocus.current.disabled = false
+            inputFocus.current.focus()
+
 
     }
 
     function endGame(){
         setIsGameStarted(false)
         setWordCount(calculateWords(typedText))
+        setTime(0)
     }
     useEffect(()=>{
         if(isGameStarted  && remainingTime !== 0 ){
@@ -54,8 +66,28 @@ function SpeedGame(){
             value={typedText}
             onChange={handleChange}
             disabled={!isGameStarted} />
-            <h4>Time Remaining: {remainingTime}</h4>
-            <button onClick={startGame} disabled={isGameStarted}>Start Game</button>
+            <h4>{!isGameStarted ? "Select time": "Remaining Time"}:  
+{!isGameStarted ? 
+            <select  
+            id="selectedTime"
+            value={time.time}
+            onChange={handleTime}
+            name="time">
+                <option value="">-- Select Time --</option>
+                <option value="10">10 seconds</option>
+                <option value="20">20 seconds</option>
+                <option value="40">40 seconds</option>
+                <option value="50">50 seconds</option>
+                <option value="60">60 seconds</option>
+                <option value="120">120 seconds</option>
+            </select> :
+            <p>{remainingTime}</p>
+            
+           
+        }
+
+            </h4>
+            <button onClick={startGame} disabled={ isGameStarted }>Start Game</button>
             <h1>Word count: {wordCount}</h1>
         </div>
     )
